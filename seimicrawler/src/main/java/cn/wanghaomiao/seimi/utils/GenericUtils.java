@@ -64,18 +64,18 @@ public class GenericUtils {
      */
     public static Class<?>[] getActualClass(Type genericType) {
 
-        if (genericType instanceof ParameterizedType type) {
+        if (genericType instanceof ParameterizedType parameterizedType) {
 
-            Type[] actualTypes = type.getActualTypeArguments();
+            Type[] actualTypes = parameterizedType.getActualTypeArguments();
             Class<?>[] actualClasses = new Class<?>[actualTypes.length];
 
             int i = 0;
             while (i < actualTypes.length) {
-                Type actualType = actualTypes[i];
-                if (actualType instanceof Class<?> class1) {
+                Type typeArgument = actualTypes[i];
+                if (typeArgument instanceof Class<?> class1) {
                     actualClasses[i] = class1;
-                } else if (actualType instanceof GenericArrayType type) {
-                    Type componentType = type.getGenericComponentType();
+                } else if (typeArgument instanceof GenericArrayType genericArrayType) {
+                    Type componentType = genericArrayType.getGenericComponentType();
                     actualClasses[i] = Array.newInstance((Class<?>) componentType, 0).getClass();
                 }
                 i++;
