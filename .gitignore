@@ -13,3 +13,5 @@ build
 target
 .idea
 *.log
+
+.autodev
